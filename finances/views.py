@@ -1,6 +1,8 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from .models import Transaction
 
-# Create your views here.
-def home(request):
-    return HttpResponse("Hello, world.")
+def transaction_list(request):
+    transaction = Transaction.objects.all()
+    return render(request, 'finances/transaction_list.html', {
+        'transaction': transaction
+    })
